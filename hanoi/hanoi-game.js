@@ -7,9 +7,11 @@ class HanoiGame {
 		const startTower = this.towers[startTowerIdx];
 		const endTower = this.towers[endTowerIdx];
 
-		if (startTower === undefined 
-		    || endTower === undefined 
-			||startTower === endTower) {
+		if (
+			startTower === undefined ||
+			endTower === undefined ||
+			startTower === endTower
+		) {
 			return false;
 		} else if (startTower.length === 0) {
 			return false;
@@ -18,13 +20,32 @@ class HanoiGame {
 		} else if (endTower.length === 0) {
 			return true;
 		} else {
-			return (startTower[startTower.length - 1] < endTower[endTower.length - 1])
+			return (
+				startTower[startTower.length - 1] <
+				endTower[endTower.length - 1]
+			);
 		}
 	}
 
-	move(startTowerIdx, endTowerIdx) {}
+	move(startTowerIdx, endTowerIdx) {
+		const startTower = this.towers[startTowerIdx];
+		const endTower = this.towers[endTowerIdx];
 
-	isWon() {}
+		if (this.isValidMove(startTowerIdx, endTowerIdx)) {
+      endTower.push(startTower.pop());
+      return true;
+		} else {
+      return false;
+    }
+	}
+
+	isWon() {
+    if (this.towers[1].length === 3 || this.towers[2].length === 3) {
+		return true;
+    } else {
+      return false;
+    }
+  }
 
 	// the below methods are complete and do not need to be modified
 	print() {
